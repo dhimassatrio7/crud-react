@@ -32,12 +32,17 @@ export default function Home() {
   };
 
   const handleDelete = (id) => {
-    axios
-      .delete(`https://64b3676d38e74e386d560a15.mockapi.io/users/${id}`)
-      .then(() => {
-        alert("Data successfully deleted");
-      })
-      .catch((err) => console.log(err));
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (confirmed) {
+      axios
+        .delete(`https://64b3676d38e74e386d560a15.mockapi.io/users/${id}`)
+        .then(() => {
+          alert("Data successfully deleted");
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -95,8 +100,7 @@ export default function Home() {
                     </Link>
                   </a>
                   <a
-                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    href=""
+                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 cursor-pointer"
                     onClick={() => handleDelete(d.id)}
                   >
                     <p>Delete</p>
