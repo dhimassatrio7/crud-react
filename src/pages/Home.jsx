@@ -31,6 +31,15 @@ export default function Home() {
       .catch((err) => console.log(err));
   };
 
+  const handleDelete = (id) => {
+    axios
+      .delete(`https://64b3676d38e74e386d560a15.mockapi.io/users/${id}`)
+      .then(() => {
+        alert("Data successfully deleted");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div className="container px-6 py-4">
@@ -79,7 +88,7 @@ export default function Home() {
                 <Table.Cell>
                   <a
                     className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    href="/tables"
+                    href=""
                   >
                     <Link to={`/update/${d.id}`}>
                       <p>Edit</p>
@@ -87,7 +96,8 @@ export default function Home() {
                   </a>
                   <a
                     className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    href="/tables"
+                    href=""
+                    onClick={() => handleDelete(d.id)}
                   >
                     <p>Delete</p>
                   </a>
